@@ -1,0 +1,70 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+// Function to input array values
+void inputArray(int arr[], int size) {
+    cout << "Enter " << size << " elements:\n";
+    for (int i = 0; i < size; i++) {
+        cin >> arr[i];
+    }
+}
+
+// Function to display array
+void displayArray(int arr[], int size) {
+    cout << "Array elements: ";
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+// Function to calculate sum (value-returning function)
+int calculateSum(int arr[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
+// Function to write array to file
+void writeToFile(int arr[], int size) {
+    ofstream file("data.txt");
+    for (int i = 0; i < size; i++) {
+        file << arr[i] << " ";
+    }
+    file.close();
+}
+
+// Function to read array from file and display
+void readFromFile(int arr[], int size) {
+    ifstream file("data.txt");
+    for (int i = 0; i < size; i++) {
+        file >> arr[i];
+    }
+    file.close();
+
+    cout << "Array read from file: ";
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    const int SIZE = 10;
+    int arr[SIZE];
+
+    inputArray(arr, SIZE);
+    displayArray(arr, SIZE);
+
+    writeToFile(arr, SIZE);
+
+    readFromFile(arr, SIZE);
+
+    int sum = calculateSum(arr, SIZE);
+    cout << "Sum of array elements: " << sum << endl;
+
+    return 0;
+}
